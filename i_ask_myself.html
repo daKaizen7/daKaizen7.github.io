@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Ask Myself</title>
+</head>
+<body>
+
+    <img id="ojos" src="Sources/7.gif" style="position:fixed; 
+    top:0; 
+    left:0; 
+    width:100vw; 
+    height:100vh; 
+    object-fit:cover; 
+    z-index:999;">
+
+    <img id="labios" src="Sources/8.gif" style="position: fixed;
+    bottom: -20%;
+    right: 40%;
+    width: 400px;
+    z-index: 999;
+    cursor: pointer;
+    transition: all 0.8s ease;" >
+    
+    <img id="lagrima1" src="Sources/10.png" style="position: fixed;
+    bottom: 12%;
+    right: 30%;
+    width: 200px;
+    z-index: 999;
+    opacity: 0;" >
+
+
+    <img id="lagrima2" src="Sources/10.png" style="position: fixed;
+    bottom: 6%;
+    right: 60%;
+    width: 200px;
+    z-index: 999;
+    transform: scaleX(-1);
+    opacity: 0;" >
+
+
+  
+  <h3 id="titulo1" style="text-align:right;
+    color: red;
+    z-index: 999;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+">
+    I ask myself
+  </h3>
+
+   <a href="maybe_ami.html"><h4 id="titulo2" style="text-align:right;
+    color: red;
+    z-index: 999;
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    font-size: 2rem;
+    display: none;
+    ">      
+    Why?
+  </h4></a>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const labios = document.getElementById('labios');
+      const lagrima1 = document.getElementById('lagrima1');
+      const lagrima2 = document.getElementById('lagrima2');
+      const titulo1 = document.getElementById('titulo1');
+      const titulo2 = document.getElementById('titulo2');
+
+
+      let clickLabios = 0;
+    
+
+    labios.addEventListener('click', () => {
+      lagrima1.style.transition  = 'opacity 1s ease';
+      lagrima2.style.transition  = 'opacity 1s ease';
+      setTimeout(() => {
+        lagrima1.style.opacity = 1;
+        lagrima2.style.opacity = 1; // esto inicia el "fade in"
+        }, 100);
+        titulo1.style.cursor= 'pointer'
+        labios.style.cursor='auto'
+        clickLabios++;
+        
+        if (clickLabios==1) {
+      titulo1.addEventListener('click', () => {
+      titulo2.style.display='block'
+      titulo1.style.cursor= 'auto'
+    })
+    }
+    });
+    
+    
+    
+
+    
+    });
+
+    
+  </script>
+
+</body>
+
+</html>

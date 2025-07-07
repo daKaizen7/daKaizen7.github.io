@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The End</title>
+</head>
+<body style="margin: 0; background-color: black;">
+
+  <img
+    id="fin"
+    src="Sources/21.gif"
+    style="
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50vw;
+      height: 50vh;
+      object-fit: cover;
+      cursor: pointer;
+    "
+    alt="The End"
+  />
+
+  <script>
+    const fin = document.getElementById('fin');
+    fin.addEventListener('click', () => {
+      // 🚨 Asegura que se cargue index.html en la ventana principal, no dentro del iframe
+      window.top.location.href = 'index.html?reinicio=true';
+    });
+  </script>
+
+</body>
+</html>

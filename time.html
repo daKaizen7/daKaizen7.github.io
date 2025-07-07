@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time</title>
+</head>
+<body id="body" style="margin: 0;
+      background-color: red;">
+
+  <img id="arena" src="Sources/19.gif" style="position:fixed; 
+    top:0; 
+    left:0; 
+    width:100vw; 
+    height:100vh; 
+    object-fit:cover; 
+    z-index:999;">   
+
+  <img id="munequita" src="Sources/12.png" style="position: fixed;
+    bottom: 20px;
+    right: 0;
+    width: 200px;
+    z-index: 999;
+    cursor: auto;
+    transition: all 5s ease;" >
+    
+  <h3 id="titulo" style="text-align:right;
+    color: red;
+    z-index: 999;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;">
+    Time won't stop
+  </h3>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const munequita = document.getElementById('munequita');  
+
+    // Esperar 100ms para asegurarse que los estilos iniciales están aplicados
+    setTimeout(() => {
+      munequita.style.right = '80%'; // se moverá hacia la izquierda
+    }, 100);
+
+    // Opcional: activar el cursor tras unos segundos
+    setTimeout(() => {
+      munequita.style.cursor = 'pointer';
+
+      munequita.addEventListener('click', () => {
+        window.location.href = 'pond.html'; 
+
+    })
+    }, 5000);
+  });
+</script>
+
+</body>
+</html>

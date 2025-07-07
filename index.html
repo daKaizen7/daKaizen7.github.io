@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>In the Night</title>
+</head>
+<body style="background-image: url('Sources/1.gif'); margin:0; padding:0; overflow:hidden;">
+
+  <!-- 🎵 Música -->
+  <audio id="musicaFondo" src="Sources/pero_duele.mp3" loop></audio>
+
+  <!-- Texto de inicio -->
+  <h3 id="titulo" style="text-align:right;
+    color: red;
+    z-index: 999;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;">
+    <a href="#" style="color:red;" onclick="
+      document.getElementById('musicaFondo').play();
+      document.getElementById('contenedor').src = 'Time_goes_by.html';
+      document.getElementById('titulo').style.display = 'none';
+      return false;
+    ">In the night</a>
+  </h3>
+
+  <!-- Iframe para cargar otras páginas -->
+  <iframe id="contenedor" src="" style="width:100vw; height:100vh; border:none;"></iframe>
+
+  <script>
+    const audio = document.getElementById('musicaFondo');
+    const iframe = document.getElementById('contenedor');
+    const urlParams = new URLSearchParams(window.location.search);
+    const reinicio = urlParams.get('reinicio');
+
+    window.addEventListener('load', () => {
+      if (audio) {
+        // Pausar y reiniciar el audio, pero no eliminar src
+        audio.pause();
+        audio.currentTime = 0;
+
+        if (reinicio) {
+          console.log('Volvimos desde the_end.html → música pausada');
+        } else {
+          console.log('Entramos a index.html → música pausada');
+        }
+      }
+    });
+
+    // 🎯 Observar si aparece el gif "17.gif" en el iframe
+    iframe.addEventListener('load', () => {
+      try {
+        const src = iframe.getAttribute('src') || '';
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+        // Si se volvió a cargar index.html dentro del iframe
+        if (src.includes('index.html')) {
+          audio.pause();
+          audio.currentTime = 0;
+          console.log('Index cargado en iframe → música pausada');
+          return;
+        }
+
+        // Buscar imagen 17.gif
+        const gif = iframeDoc.querySelector('img[src*="17.gif"]');
+        if (!gif) return;
+
+        // Si ya está visible al cargar
+        if (window.getComputedStyle(gif).display !== 'none') {
+          audio.pause();
+          console.log('17.gif ya visible → música pausada');
+          return;
+        }
+
+        // Observar cambios de visibilidad en el gif
+        const observer = new MutationObserver(mutations => {
+          mutations.forEach(mutation => {
+            if (mutation.attributeName === 'style') {
+              const display = window.getComputedStyle(gif).display;
+              if (display !== 'none') {
+                audio.pause();
+                console.log('17.gif se volvió visible → música pausada');
+                observer.disconnect();
+              }
+            }
+          });
+        });
+
+        observer.observe(gif, { attributes: true, attributeFilter: ['style'] });
+
+      } catch (err) {
+        console.warn('No se pudo acceder al contenido del iframe:', err);
+      }
+    });
+  </script>
+
+</body>
+</html>

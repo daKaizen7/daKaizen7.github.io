@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Phone Rings</title>
+</head>
+
+<body>
+
+  <img id="musica" src="Sources/2.5.gif" style="position:fixed; top:0; left:0; width:100vw; height:100vh; object-fit:cover; z-index:999;">
+
+  <img id="munequita" src="Sources/12.png" style="position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 150px;
+    display: none;
+    z-index: 999;
+    cursor: pointer;
+    transition: all 0.8s ease;" >
+
+  <h3 id="titulo" style="text-align:right;
+    color: red;
+    display: none;
+    z-index: 999;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;">
+    Time goes by 
+  </h3>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const gif = document.getElementById('musica');
+      const munequita = document.getElementById('munequita');
+      const titulo = document.getElementById('titulo');
+
+      let clickCount = 0;
+
+      setTimeout(() => {
+        gif.src = 'Sources/3.gif';
+        titulo.style.display = 'block';
+
+        setTimeout(() => {
+          gif.src = 'Sources/3.5.png';
+          munequita.style.display = 'block';
+        }, 2800);
+      }, 5000);
+
+      munequita.addEventListener('click', () => {
+        clickCount++;
+
+        if (clickCount === 1) {
+          munequita.style.right = '50%';
+          munequita.style.bottom = '50%';
+          munequita.style.transform = 'translate(50%, 50%)';
+
+        } else if (clickCount === 2) {
+          munequita.style.right = '';
+          munequita.style.left = '20px';
+          munequita.style.bottom = '20px';
+          munequita.style.transform = 'none';
+        } else if (clickCount === 3) {
+          window.location.href = 'phone_rings.html';
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>

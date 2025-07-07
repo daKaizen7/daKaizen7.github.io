@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Phone Rings</title>
+</head>
+
+<body>
+
+  <img id="telefono" src="Sources/4.gif" style="position:fixed; 
+  top:0; 
+  left:0; 
+  width:100vw; 
+  height:100vh; 
+  object-fit:cover; 
+  z-index:999;">
+
+  <img id="munequita" src="Sources/12.png" style="position: fixed;
+    bottom: 20px;
+    right: 20%;
+    width: 150px;
+    z-index: 999;
+    cursor: pointer;
+    transition: all 0.8s ease;" >
+
+    <img id="telefonito_colgado" src="Sources/5.png" style="position: fixed;
+    bottom: 20px;
+    right: 55%;
+    width: 150px;
+    z-index: 999;
+    cursor: pointer;
+    transition: all 0.8s ease;" >
+
+    <img id="telefonito_respondido" src="Sources/6.png" style="position: fixed;
+    bottom: 20px;
+    right: 55%;
+    width: 150px;
+    z-index: 999;
+    cursor: pointer;
+    display: none;
+    transition: all 0.8s ease;" >
+
+
+  
+  <h3 id="titulo" style="text-align:right;
+    color: red;
+    z-index: 999;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;">
+    Phone rings 
+  </h3>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const munequita = document.getElementById('munequita');
+      const telefonito_colgado = document.getElementById('telefonito_colgado');
+      const telefonito_respondido = document.getElementById('telefonito_respondido');
+      const titulo = document.getElementById('titulo');
+
+      let clickMunequita = 0;
+      let clickTelefonoColgado = 0;
+    
+
+    munequita.addEventListener('click', () => {
+      clickMunequita++;
+      if (clickMunequita === 1) {
+        munequita.style.right = '50%';
+        munequita.style.transform = 'translate(50%)';
+        munequita.style.cursor= 'auto'
+      }
+      });
+
+    telefonito_colgado.addEventListener('click', () => {
+      clickTelefonoColgado++;
+      if (clickMunequita === 1 && clickTelefonoColgado === 1) {
+        telefonito_colgado.style.display='none'
+        telefonito_respondido.style.display='block'
+        telefonito_respondido.style.cursor='auto'
+        titulo.style.cursor = 'pointer';
+        titulo.addEventListener('click', () => {
+       window.location.href = 'i_ask_myself.html';   
+    })
+      }
+    })
+
+    
+
+    
+    });
+  </script>
+
+</body>
+
+</html>

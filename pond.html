@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pond</title>
+</head>
+<body id="body" style="margin: 0;
+      background-color: black;">
+
+  <img id="agua" src="Sources/20.gif" style="position:fixed; 
+    top:0; 
+    left:0; 
+    width:100vw; 
+    height:100vh; 
+    object-fit:cover;">   
+
+  <img id="munequita" src="Sources/12.png" style="position: fixed;
+    left: 20px;
+    top: 0;
+    width: 200px;
+    z-index: 998;
+    cursor: auto;
+    transition: all 3s ease-in;
+    filter: drop-shadow(0 0 10px white);
+   " >
+    
+  <h3 id="titulo1" style="text-align:right;
+    color: red;
+    z-index: 999;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 2rem;">
+    I'm stuck...
+  </h3>
+
+  <h3 id="titulo2" style="text-align:right;
+    color: red;
+    z-index: 999;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    font-size: 2rem;
+    opacity: 0;
+    transition: opacity 2s ease;">
+    ...in what could have been.
+  </h3>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const munequita = document.getElementById('munequita');  
+    const titulo2 = document.getElementById('titulo2');  
+
+
+    // Esperar 100ms para asegurarse que los estilos iniciales están aplicados
+    setTimeout(() => {
+      munequita.style.top = '100%'; // se moverá hacia abajo
+    }, 100);
+
+    setTimeout(() => {
+      titulo2.style.opacity = '1';// se moverá hacia abajo
+      titulo2.style.cursor = 'pointer';
+      titulo2.addEventListener('click', () => {
+        window.location.href = 'the_end.html'; 
+    })
+    }, 3000);
+
+
+  });
+</script>
+
+</body>
+</html>

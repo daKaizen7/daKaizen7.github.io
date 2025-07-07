@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>In My Dreams</title>
+</head>
+<body id="body" style="margin: 0;
+      background-color: red;">
+
+  <img id="maquina" src="Sources/13.gif" style="position: fixed;
+      top: 0;
+      left: 0;
+      width: 50vw;
+      height: 50vh;
+      object-fit: cover;">
+
+  <video id="video" autoplay loop muted style="position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 40vw;
+      height: 90vh;
+      z-index: 999;
+      display: none;">
+    <source src="Sources/14.5.mp4" type="video/mp4">
+    Tu navegador no soporta la etiqueta de video.
+  </video>
+
+  <img id="vela" src="Sources/16.gif" style="position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 45vw;
+      height: 45vh;
+      object-fit: cover;
+      display: none;
+      margin-left: 30px;">
+
+  <img id="vela_apagar" src="Sources/17.gif" style="position:fixed; 
+    top:0; 
+    left:0; 
+    width:100vw; 
+    height:100vh; 
+    object-fit:cover; 
+    z-index:999;
+    display:none;">    
+
+<script>
+  const maquina = document.getElementById('maquina');
+  const video = document.getElementById('video');
+  const vela = document.getElementById('vela');
+  const vela_apagar = document.getElementById('vela_apagar');
+  const body = document.getElementById('body');
+
+
+  function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async function secuencia() {
+    await delay(4000);
+    maquina.style.cursor = 'pointer';
+
+    maquina.addEventListener('click', async () => {
+      video.style.display = 'block';
+      video.muted = false;
+      maquina.style.cursor = 'auto';
+    
+      await video.play().catch(err => console.error("Error al reproducir video:", err));
+
+      await delay(4000);
+      video.style.cursor = 'pointer';
+
+      video.addEventListener('click', async () => {
+        vela.style.display = 'block';
+        video.style.cursor = 'auto';
+       
+        await delay(2000);
+        vela.style.cursor = 'pointer';
+
+        vela.addEventListener('click', async() => {
+          vela_apagar.style.display = 'block';
+          video.muted= true;
+
+          await delay(500);
+          body.style.backgroundColor = 'black';
+          maquina.style.display= 'none';
+          video.style.display= 'none';
+          vela.style.display= 'none';
+          vela_apagar.style.display= 'none';
+
+          await delay(1000);
+          window.location.href = 'no.html';
+        }, { once: true }); // Evita duplicar el listener
+      }, { once: true });y
+    }, { once: true });
+  }
+
+  secuencia();
+</script>
+</body>
+</html>

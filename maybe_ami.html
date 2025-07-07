@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maybe... am I...</title>
+</head>
+<body>
+    <img id="espiral" src="Sources/12.gif" style="position:fixed; 
+    top:0; 
+    left:0; 
+    width:100vw; 
+    height:100vh; 
+    object-fit:cover; 
+    ;">
+
+  <img id="munequita" src="Sources/12.png" style="
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(2); /* Aparece grande */
+      width: 30%;
+      z-index: 999;
+      transition: transform 5s ease, opacity 10s ease;
+    " >
+  
+  <h3 id="titulo" style="text-align:right;
+    color: red;
+    z-index: 999;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+
+">
+    Maybe... am I...
+  </h3>
+
+
+
+  <script>
+    const munequita = document.getElementById('munequita');
+    const titulo = document.getElementById('titulo');
+
+
+    // Espera 1 segundo, luego hace más pequeña la imagen
+    setTimeout(() => {
+      munequita.style.transform = 'translate(-50%, -50%) scale(0)';
+      munequita.style.opacity = '0'; // opcional: también se desvanece un poco
+    
+    }, 500);
+
+    setTimeout(() => {
+      titulo.style.cursor='pointer'
+      titulo.addEventListener('click', () => {
+      window.location.href = 'in_my_dreams.html';
+  
+    })
+    }, 4000);
+
+    
+  </script>
+
+</body>
+</html>
+
+
